@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
                 "Hotel 1",
                 "5.0",
                 "4.0",
-                "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "https://cdn3.ivivu.com/2014/01/SUPER-DELUXE2.jpg",
                 "Mumbai",
                 "Rs. 5000"
             )
@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
                 "Hotel 2",
                 "5.0",
                 "4.0",
-                "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "https://pistachiohotel.com/UploadFile/Gallery/Overview/a1.jpg",
                 "Mumbai",
                 "Rs. 5000"
             )

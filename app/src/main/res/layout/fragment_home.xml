@@ -14,12 +14,13 @@
         android:orientation="vertical">
 
 
-        <SearchView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Tìm kiếm">
+            android:id="@+id/search"
+            android:hint="Tìm kiếm"/>
 
-        </SearchView>
+
 
         <LinearLayout
             android:layout_width="match_parent"
