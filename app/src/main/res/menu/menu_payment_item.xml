@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item   android:id="@+id/walet"
+            android:title="Your Walet"
+            android:icon="@drawable/ic_wallet"/>
+    <item   android:id="@+id/MoMo"
+            android:title="Momo"
+            android:icon="@drawable/icon_momo"/>
+</menu>
