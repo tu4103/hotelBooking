@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/Hotel_cart_image"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/img_register" />
 
@@ -85,6 +85,16 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:text="Status" />
+        <TextView
+            android:id="@+id/cart_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="quantity" />
+
 
     </LinearLayout>
 

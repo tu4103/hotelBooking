@@ -26,9 +26,9 @@ class LoginActivity : AppCompatActivity() {
             val password = editTextPassword.text.toString()
             if (validate(email, password)) {
                 if (login(email, password)) {
-                    Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
+                    Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -41,14 +41,13 @@ class LoginActivity : AppCompatActivity() {
     private fun login(email: String, password: String): Boolean {
         var check = false
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
+            .addOnSuccessListener {
                     Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
                     check = true
-                } else {
-                    Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
-                }
             }
+            .addOnFailureListener {
+                Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+}
         return check
     }
 

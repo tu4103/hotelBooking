@@ -8,6 +8,13 @@
     android:padding="30dp"
     tools:context=".BookingActivity">
 
+
+    <Button
+        android:id="@+id/Back1"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arow_back_icon" />
+
     <TextView
         android:id="@+id/textView9"
         android:layout_width="match_parent"

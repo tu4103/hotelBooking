@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.tu.bookin_hotel.fragments.WalletFragment
 import com.tu.bookin_hotel.models.HotelModel
 
 class HotelDetailActivity : AppCompatActivity() {
@@ -33,6 +34,7 @@ class HotelDetailActivity : AppCompatActivity() {
         btnBook = findViewById(R.id.Booking)
         btnBook.setOnClickListener {
             val intent = Intent(this, BookingActivity::class.java)
+            intent.putExtra("hotel", hotel)
             startActivity(intent)
 }
     }

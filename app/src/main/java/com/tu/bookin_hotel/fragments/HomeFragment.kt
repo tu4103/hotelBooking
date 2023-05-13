@@ -12,6 +12,10 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.tu.bookin_hotel.HotelDetailActivity
 import com.tu.bookin_hotel.R
 import com.tu.bookin_hotel.SearchActivity
@@ -57,10 +61,10 @@ class HomeFragment : Fragment() {
         val bestChoiceRecyclerView = view.findViewById<RecyclerView>(R.id.bestChoice_recyclerView)
         bestChoiceRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        val hotelList = hotelList()
+
         val listenerRecommend = object : OnItemClickListenerRecommend {
             override fun onItemClick(position: Int) {
-                val hotel: HotelModel = hotelList[position]
+                val hotel: HotelModel = hotels[position]
                 val intent = Intent(context, HotelDetailActivity::class.java)
                 intent.putExtra("hotel", hotel)
                 startActivity(intent)
@@ -68,20 +72,25 @@ class HomeFragment : Fragment() {
         }
         val listenerHotel = object : OnItemClickListenerHotel {
             override fun onItemClick(position: Int) {
-                val hotel: HotelModel = hotelList[position]
+                val hotel: HotelModel = hotels[position]
                 val intent = Intent(context, HotelDetailActivity::class.java)
                 intent.putExtra("hotel", hotel)
                 startActivity(intent)
             }
         }
-        hotelAdapter = HotelAdapter(hotelList, listenerHotel)
-        bestChoiceRecyclerView.adapter = hotelAdapter
+        hotelList { list ->
+            hotels = list
+            hotelAdapter = HotelAdapter(list, listenerHotel)
+            bestChoiceRecyclerView.adapter = hotelAdapter
+        }
         val recommendedRecyclerView = view.findViewById<RecyclerView>(R.id.recommend_recyclerView)
         recommendedRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        hotelRecommended = hotelList()
-        hotelAdapter2 = HotelAdapter2(hotelRecommended, listenerRecommend)
-        recommendedRecyclerView.adapter = hotelAdapter2
+        hotelList { list ->
+            hotelRecommended = list
+            hotelAdapter2 = HotelAdapter2(list, listenerRecommend)
+            recommendedRecyclerView.adapter = hotelAdapter2
+        }
 
         btnsearch = view.findViewById(R.id.btn_hotel_search)
         btnsearch.setOnClickListener {
@@ -91,38 +100,28 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    private fun hotelList(): ArrayList<HotelModel> {
+    private fun hotelList(callback: (ArrayList<HotelModel>) -> Unit) {
+        val db = FirebaseDatabase.getInstance()
+        val ref = db.getReference("hotel")
         val list = ArrayList<HotelModel>()
-        list.add(
-            HotelModel(
-                "Hotel 1",
-                "5.0",
-                "4.0",
-                "https://cdn3.ivivu.com/2014/01/SUPER-DELUXE2.jpg",
-                "Mumbai",
-                "Rs. 5000"
-            )
-        )
-        list.add(
-            HotelModel(
-                "Hotel 2",
-                "5.0",
-                "4.0",
-                "https://pistachiohotel.com/UploadFile/Gallery/Overview/a1.jpg",
-                "Mumbai",
-                "Rs. 5000"
-            )
-        )
-        list.add(
-            HotelModel(
-                "Hotel 3",
-                "5.0",
-                "4.0",
-                "https://pistachiohotel.com/UploadFile/Gallery/Overview/a2.jpg",
-                "Mumbai",
-                "Rs. 5000"
-            )
-        )
-        return list
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (childSnapshot in snapshot.children) {
+                    val name = childSnapshot.child("name").value.toString()
+                    val review = childSnapshot.child("review").value.toString()
+                    val rating = childSnapshot.child("rating").value.toString()
+                    val image = childSnapshot.child("image").value.toString()
+                    val location = childSnapshot.child("location").value.toString()
+                    val price = childSnapshot.child("price").value.toString()
+                    val hotel = HotelModel(name, review, rating, image, location, price)
+                    list.add(hotel)
+                }
+                callback(list)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

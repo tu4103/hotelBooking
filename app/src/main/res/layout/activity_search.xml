@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".SearchActivity">
 
+
+    <Button
+        android:id="@+id/btn_back2"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arow_back_icon"
+        />
+
     <EditText
         android:id="@+id/Search_search"
         android:layout_width="match_parent"

@@ -21,26 +21,25 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        val db = FirebaseDatabase.getInstance()
-        val ref = db.getReference("hotel")
-
          searchView = findViewById(R.id.search_recycler_view)
         searchView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         val listenerhotel = object : OnItemClickListenerHotel {
             override fun onItemClick(position: Int) {
-                val hotel: HotelModel = hotelList()[position]
+                val hotel: HotelModel = hotels[position]
                 val intent = Intent(this@SearchActivity, HotelDetailActivity::class.java)
                 intent.putExtra("hotel", hotel)
                 startActivity(intent)
 }
         }
-        val hotelList = hotelList()
-        hotelAdapter = HotelAdapter(hotelList, listenerhotel)
-        searchView.adapter = hotelAdapter
+        hotelList { list ->
+            hotels = list
+            hotelAdapter = HotelAdapter(list, listenerhotel)
+            searchView.adapter = hotelAdapter
+        }
     }
 
-    private fun hotelList(): ArrayList<HotelModel> {
+    private fun hotelList(callback: (ArrayList<HotelModel>) -> Unit) {
         val db = FirebaseDatabase.getInstance()
         val ref = db.getReference("hotel")
         val list = ArrayList<HotelModel>()
@@ -56,13 +55,12 @@ class SearchActivity : AppCompatActivity() {
                     val hotel = HotelModel(name, review, rating, image, location, price)
                     list.add(hotel)
                 }
-                hotelAdapter.notifyDataSetChanged()
+                callback(list)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@SearchActivity, error.message, Toast.LENGTH_SHORT).show()
             }
         })
-        return list
     }
 }

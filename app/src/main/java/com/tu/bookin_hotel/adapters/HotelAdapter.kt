@@ -38,16 +38,18 @@ class HotelAdapter(
     }
 
     override fun onBindViewHolder(holder: HotelViewHolder, position: Int) {
-        val currentHotel = hotel_list[position]
-        holder.nameHotel.text = currentHotel.name
-        holder.reviewHotel.text = currentHotel.review
-        holder.ratingHotel.rating = currentHotel.rating.toFloat()
-        holder.locationHotel.text = currentHotel.location
-        holder.priceHotel.text = currentHotel.price
-        Glide.with(holder.itemView.context).load(currentHotel.image)
-            .into(holder.imageHotel)
-        holder.itemView.setOnClickListener {
-            listener.onItemClick(position)
+        if(hotel_list.isNotEmpty()){
+            val currentHotel = hotel_list[position]
+            holder.nameHotel.text = currentHotel.name
+            holder.reviewHotel.text = currentHotel.review
+            holder.ratingHotel.rating = currentHotel.rating.toFloat()
+            holder.locationHotel.text = currentHotel.location
+            holder.priceHotel.text = currentHotel.price
+            Glide.with(holder.itemView.context).load(currentHotel.image)
+                .into(holder.imageHotel)
+            holder.itemView.setOnClickListener {
+                listener.onItemClick(position)
+            }
         }
     }
 

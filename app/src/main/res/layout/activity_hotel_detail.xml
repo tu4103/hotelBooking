@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".HotelDetailActivity">
 
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/arow_back_icon" />
     <include layout="@layout/item_hotel" />
 
     <LinearLayout
@@ -20,16 +26,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:layout_weight="3"
+            android:layout_weight="1"
             android:textColor="@color/black"
-            android:text="Desription \n 32 \n49\n59\n48\n27" />
+            android:text="Satya Danang Hotel is conveniently located in the heart of Da Nang city, just a 5-minute walk from the Han River. The hotel offers comfortable rooms with bathtubs and comfortable seating areas. Free internet is available in public areas." />
 
         <ImageView
             android:id="@+id/detai_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
-            android:layout_weight="5"
+            android:layout_weight="16"
             app:srcCompat="@drawable/dia_diem" />
 
         <Button
