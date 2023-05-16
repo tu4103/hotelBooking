@@ -15,7 +15,7 @@
         android:background="@drawable/arow_back_icon"
         />
 
-    <EditText
+    <SearchView
         android:id="@+id/Search_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

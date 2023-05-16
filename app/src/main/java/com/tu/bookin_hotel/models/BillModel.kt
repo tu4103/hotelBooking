@@ -1,10 +1,17 @@
 package com.tu.bookin_hotel.models
 
-data class BillModel(val hotelname : String,
+import java.io.Serializable
+
+data class BillModel(val billId: String,
+                     val hotel: HotelModel,
                      val costumerName: String,
                      val checkin: String,
                      val checkout : String,
-                     val nights: Int,
+                     val nights: String,
+                     val quantity: String,
                      val total: String,
-                     val Status: String)
+                     val phone : String,
+                     val email : String,
+                     val type : String
+                     ) : Serializable
 

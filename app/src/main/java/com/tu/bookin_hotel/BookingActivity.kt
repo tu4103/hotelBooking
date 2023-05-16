@@ -35,7 +35,7 @@ class BookingActivity : AppCompatActivity() {
 
         btntype = findViewById(R.id.type_room)
         btnNext = findViewById(R.id.next_step)
-        btnQuantity = findViewById(R.id.quantity)
+        btnQuantity = findViewById(R.id.btn_quantity)
         btntype.setOnClickListener() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Select an option")
@@ -52,45 +52,46 @@ class BookingActivity : AppCompatActivity() {
             }
             builder.show()
         }
-        btnQuantity.setOnClickListener(){
+        btnQuantity.setOnClickListener() {
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("Quantity")
+            builder.setTitle("Select an option")
             builder.setItems(arrayOf("1", "2", "3")) { dialog, which ->
                 // Xử lý tùy chọn được chọn
                 when (which) {
                     0 -> {
-                        btntype.setText("1")
+                        btnQuantity.setText("1")
                     }
                     1 -> {
-                        btntype.setText("2")
+                        btnQuantity.setText("2")
                     }
                     2 -> {
-                        btntype.setText("3")
+                        btnQuantity.setText("3")
                     }
                 }
-}
-        }
 
-        btnNext.setOnClickListener() {
-            val name=customer_name.text.toString()
-            val phone=customer_phone.text.toString()
-            val email=customer_email.text.toString()
-            val checkin=checkin.text.toString()
-            val checkout=checkout.text.toString()
-            val type=btntype.text.toString()
-            val quantity=btntype.text.toString()
-
-            val intent = Intent(this, BookingActivityStep2::class.java)
-            intent.putExtra("hotel", hotel)
-            intent.putExtra("name", name)
-            intent.putExtra("phone", phone)
-            intent.putExtra("email", email)
-            intent.putExtra("checkin", checkin)
-            intent.putExtra("checkout", checkout)
-            intent.putExtra("type", type)
-            intent.putExtra("quantity", quantity)
-            startActivity(intent)
+            }
+            builder.show()
         }
+            btnNext.setOnClickListener() {
+                val name = customer_name.text.toString()
+                val phone = customer_phone.text.toString()
+                val email = customer_email.text.toString()
+                val checkin = checkin.text.toString()
+                val checkout = checkout.text.toString()
+                val type = btntype.text.toString()
+                val quantity = btnQuantity.text.toString()
+
+                val intent = Intent(this, BookingActivityStep2::class.java)
+                intent.putExtra("hotel", hotel)
+                intent.putExtra("name", name)
+                intent.putExtra("phone", phone)
+                intent.putExtra("email", email)
+                intent.putExtra("checkin", checkin)
+                intent.putExtra("checkout", checkout)
+                intent.putExtra("type", type)
+                intent.putExtra("quantity", quantity)
+                startActivity(intent)
+            }
 
 
     }

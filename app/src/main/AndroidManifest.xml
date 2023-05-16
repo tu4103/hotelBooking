@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Bookin_Hotel"
         tools:targetApi="31">
         <activity
+            android:name=".BillDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".uploadActivity"
             android:exported="false" />
         <activity

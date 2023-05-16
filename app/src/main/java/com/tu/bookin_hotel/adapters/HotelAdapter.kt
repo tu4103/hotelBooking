@@ -65,7 +65,10 @@ class HotelAdapter(
         val locationHotel: TextView = itemView.findViewById(R.id.location_hotel)
         val priceHotel: TextView = itemView.findViewById(R.id.price_hotel)
     }
-
+    fun filter(list: ArrayList<HotelModel>) {
+         hotel_list = list
+        notifyDataSetChanged()
+    }
 }
 
 

@@ -81,7 +81,7 @@
                 android:inputType="datetime" />
 
             <Button
-                android:id="@+id/quantity"
+                android:id="@+id/btn_quantity"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"

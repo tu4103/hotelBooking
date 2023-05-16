@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#DDD9AD"
     tools:context=".fragments.CartFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#B118AE"
+        android:background="#DDD9AD"
         android:gravity="center"
         android:orientation="horizontal">
 

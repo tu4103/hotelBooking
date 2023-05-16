@@ -2,11 +2,8 @@ package com.tu.bookin_hotel
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentContainerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.tu.bookin_hotel.fragments.BookingFragment
 import com.tu.bookin_hotel.fragments.CartFragment
 import com.tu.bookin_hotel.fragments.HomeFragment
 import com.tu.bookin_hotel.fragments.ProfileFragment

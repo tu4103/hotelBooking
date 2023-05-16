@@ -104,7 +104,7 @@ class HomeFragment : Fragment() {
         val db = FirebaseDatabase.getInstance()
         val ref = db.getReference("hotel")
         val list = ArrayList<HotelModel>()
-        ref.addValueEventListener(object : ValueEventListener {
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (childSnapshot in snapshot.children) {
                     val name = childSnapshot.child("name").value.toString()
